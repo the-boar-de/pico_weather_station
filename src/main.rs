@@ -32,11 +32,32 @@ use rp235x_hal as hal;
 #[cfg(rp2040)]
 use rp2040_hal as hal;
 
+<<<<<<< HEAD
 #[unsafe(link_section = ".boot2")]
+=======
+//Added modules
+
+pub mod connector;
+pub mod display;
+
+//Uses of modules
+use connector::information_collector;
+use display::screen;
+
+// use bsp::entry;
+// use bsp::hal;
+// use rp_pico as bsp;
+
+/// The linker will place this boot block at the start of our program image. We
+/// need this to help the ROM bootloader get our code up and running.
+/// Note: This boot block is not necessary when using a rp-hal based BSP
+/// as the BSPs already perform this step.
+/*#[unsafe(link_section = ".boot2")]
+>>>>>>> 988929f (reorgenized folder)
 #[used]
 #[cfg(rp2040)]
 pub static BOOT2: [u8; 256] = rp2040_boot2::BOOT_LOADER_W25Q080;
-
+*/
 /// Tell the Boot ROM about our application
 #[unsafe(link_section = ".start_block")]
 #[used]
@@ -56,12 +77,24 @@ const XTAL_FREQ_HZ: u32 = 12_000_000u32;
 use DataCollectpr::data_collector::DataCollector;
 use display::screen::Screen;
 
+<<<<<<< HEAD
 use WifiSetting;
+=======
+/// Entry point to our bare-metal application.
+///
+/// The `#[hal::entry]` macro ensures the Cortex-M start-up code calls this function
+/// as soon as all global variables and the spinlock are initialised.
+///
+/// The function configures the rp2040 and rp235x peripherals, then toggles a GPIO pin in
+/// an infinite loop. If there is an LED connected to that pin, it will blink.
+>>>>>>> 988929f (reorgenized folder)
 use ed_utl;
 //==============================================================================================
 
 #[entry]
 fn main() -> ! {
+    // Config area
+    //--------------------
     info!("Program start");
     //Program start up run
     // runs only once
@@ -110,11 +143,17 @@ fn main() -> ! {
         &mut pac.RESETS,
     );
 
+<<<<<<< HEAD
     // Configure GPIO25 as an output
     let mut led_pin = pins.gpio25.into_push_pull_output();
 
     //==============================================================================================
     // Program Loop
+=======
+    // Loop area
+    //--------------------
+    let mut led_pin = pins.gpio15.into_push_pull_output();
+>>>>>>> 988929f (reorgenized folder)
     loop {
         info!("Loop is Starting");
 
