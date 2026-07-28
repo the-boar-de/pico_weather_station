@@ -15,7 +15,7 @@
 
 use defmt::*;
 use defmt_rtt as _;
-use ed_utl::Information;
+
 use embedded_hal::delay::DelayNs;
 use embedded_hal::digital::OutputPin;
 #[cfg(target_arch = "riscv32")]
@@ -31,18 +31,6 @@ use rp235x_hal as hal;
 
 #[cfg(rp2040)]
 use rp2040_hal as hal;
-
-<<<<<<< HEAD
-#[unsafe(link_section = ".boot2")]
-=======
-//Added modules
-
-pub mod connector;
-pub mod display;
-
-//Uses of modules
-use connector::information_collector;
-use display::screen;
 
 // use bsp::entry;
 // use bsp::hal;
@@ -74,21 +62,7 @@ pub static IMAGE_DEF: hal::block::ImageDef = hal::block::ImageDef::secure_exe();
 const XTAL_FREQ_HZ: u32 = 12_000_000u32;
 //==============================================================================================
 //custom use
-use DataCollectpr::data_collector::DataCollector;
-use display::screen::Screen;
 
-<<<<<<< HEAD
-use WifiSetting;
-=======
-/// Entry point to our bare-metal application.
-///
-/// The `#[hal::entry]` macro ensures the Cortex-M start-up code calls this function
-/// as soon as all global variables and the spinlock are initialised.
-///
-/// The function configures the rp2040 and rp235x peripherals, then toggles a GPIO pin in
-/// an infinite loop. If there is an LED connected to that pin, it will blink.
->>>>>>> 988929f (reorgenized folder)
-use ed_utl;
 //==============================================================================================
 
 #[entry]
@@ -102,11 +76,6 @@ fn main() -> ! {
     // Setup
     // Manual set up
     // Wifi Setting needs to be adjusted
-    let wifi_setting = WifiSetting {
-        WifiName: "",
-        Password: "",
-        MACAdress: "",
-    };
 
     // Grab our singleton objects
     let mut pac = hal::pac::Peripherals::take().unwrap();
@@ -143,27 +112,7 @@ fn main() -> ! {
         &mut pac.RESETS,
     );
 
-<<<<<<< HEAD
-    // Configure GPIO25 as an output
-    let mut led_pin = pins.gpio25.into_push_pull_output();
-
-    //==============================================================================================
-    // Program Loop
-=======
-    // Loop area
-    //--------------------
-    let mut led_pin = pins.gpio15.into_push_pull_output();
->>>>>>> 988929f (reorgenized folder)
-    loop {
-        info!("Loop is Starting");
-
-        info!("on!");
-        led_pin.set_high().unwrap();
-        timer.delay_ms(200);
-        info!("off!");
-        led_pin.set_low().unwrap();
-        timer.delay_ms(200);
-    }
+    loop {}
 }
 
 /// Program metadata for `picotool info`
