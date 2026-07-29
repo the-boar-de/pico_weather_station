@@ -15,14 +15,17 @@ use http::StatusCode;
 use regex_lite::Regex;
 use std::time::Duration;
 
-fn request_information(_version: &f64) -> bool {
-    let mut url = String::from("");
+fn request_data(version: &str, unit: &str, location: &str, lang: &str, api: &str) -> Receiver {
+    let re_lite = Regex::new().unwrap();
 
-    let page = String::from("http://api.openweathermap.org/");
+    match re_lite.captures(&location) {
+        Some() => format!(
+            "http://api.openweathermap.org/data/{}/weather?id={}&units={}&lang={}&appid={}",
+            version, location, units, lang, api
+        ),
 
-    let data = String::from("data/");
-
-    let version = _version.to_string();
+        None => warning!("url is incorrect"),
+    }
 }
 
 // VVVVVVVVVVVVVVVVVVVVVVVVVVVVV delete after finished VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
