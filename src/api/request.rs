@@ -15,16 +15,20 @@ use http::StatusCode;
 use regex_lite::Regex;
 use std::time::Duration;
 
-fn request_data(version: &str, unit: &str, location: &str, lang: &str, api: &str) -> Receiver {
+fn request_data(version: &f64, unit: &str, location: &str, lang: &str, api: &str) -> Receiver {
     let re_lite = Regex::new().unwrap();
 
     match re_lite.captures(&location) {
         Some() => format!(
             "http://api.openweathermap.org/data/{}/weather?id={}&units={}&lang={}&appid={}",
-            version, location, units, lang, api
+            version.to_string(),
+            location,
+            units,
+            lang,
+            api
         ),
 
-        None => warning!("url is incorrect"),
+        None => warning!("url is incorrect, check formats of the inputs"),
     }
 }
 
