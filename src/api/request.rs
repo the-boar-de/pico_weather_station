@@ -16,7 +16,37 @@ use regex_lite::Regex;
 use std::time::Duration;
 
 fn request_data(version: &f64, unit: &str, location: &str, lang: &str, api: &str) -> Receiver {
-    let re_lite = Regex::new().unwrap();
+    let mut sequence = 0; 
+
+    let url = String::from("http://api.openweathermap.org/data/");
+
+
+    match sequence {
+        0 => (
+                url.push_string( Some() =>,
+
+
+                None 
+                ),
+
+
+
+
+            sequence = 1
+        ),   
+
+
+        91 => warning!("Version is missing "),
+
+        _ => warning!("invalid request sequence")
+
+    };
+
+
+
+
+
+
 
     match re_lite.captures(&location) {
         Some() => format!(
@@ -46,7 +76,8 @@ use futures::executor;
 use http::StatusCode;
 use regex::Regex;           // => not for embedded
 use std::sync::mpsc;        // => not for embedded
-use std::thread;            // => not for embedded
+use std::thread;          
+  // => not for embedded
 use std::time::Duration;
 
 mod api;

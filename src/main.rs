@@ -111,8 +111,14 @@ fn main() -> ! {
         sio.gpio_bank0,
         &mut pac.RESETS,
     );
+    let mut State = Enum_States.Init;
 
-    loop {}
+    async loop {  
+        State_Sequence(State).await();
+    
+
+        
+    }
 }
 
 /// Program metadata for `picotool info`
