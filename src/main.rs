@@ -111,13 +111,40 @@ fn main() -> ! {
         sio.gpio_bank0,
         &mut pac.RESETS,
     );
-    let mut State = Enum_States.Init;
+    let mut main_Sequence = Enum_States.Init;
 
-    async loop {  
-        State_Sequence(State).await();
-    
+    loop {
+        match main_Sequence {
+            // Init State
+            Enum_State::Init => {
+                info!("Enter INIT state");
+                // Establish Wifi Connection
 
-        
+                // Clean screen
+
+                // Write When Next Step
+                main_Sequence = Enum_State::Update;
+            }
+
+            // Idle State
+            Enum_State::Idle => {
+                info!("Enter IDLE state");
+            }
+
+            //Update data and screen
+            Enum_State::Update => {
+                info!("Enter UPDATE state");
+
+
+                // Write When Next Step
+                main_Sequence = Enum_State::Idle;
+            }
+
+            // Error State
+            Enum_State::Error => {
+                info!("Enter ERROR state");
+            }
+        }
     }
 }
 

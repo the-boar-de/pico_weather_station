@@ -12,55 +12,33 @@
 extern crate serde_json;
 
 use http::StatusCode;
-use regex_lite::Regex;
 use std::time::Duration;
 
-fn request_data(version: &f64, unit: &str, location: &str, lang: &str, api: &str) -> Receiver {
-    let mut sequence = 0; 
-
-    let url = String::from("http://api.openweathermap.org/data/");
-
-
-    match sequence {
-        0 => (
-                url.push_string( Some() =>,
-
-
-                None 
-                ),
-
-
-
-
-            sequence = 1
-        ),   
-
-
-        91 => warning!("Version is missing "),
-
-        _ => warning!("invalid request sequence")
-
-    };
-
-
-
-
-
-
-
-    match re_lite.captures(&location) {
-        Some() => format!(
-            "http://api.openweathermap.org/data/{}/weather?id={}&units={}&lang={}&appid={}",
-            version.to_string(),
-            location,
-            units,
-            lang,
-            api
-        ),
-
-        None => warning!("url is incorrect, check formats of the inputs"),
-    }
+pub struct Request{
+    version: f64, 
+    unit: str, 
+    location: u64, 
+    lang: str, 
+    api: str
 }
+
+
+// Request data from the api 
+fn request_data( request: &Request) -> String {
+    let url = String::from("http://api.openweathermap.org/data/");
+            // Add Api Version 
+            url.push_str("{}",request.version.to_string() );
+            // Add location 
+            url.push_str("/weather?id={}",request.location.to_string());
+            // Add unit
+            url.push_str("&units={}",request.unit);
+            // Add lang
+            url.push_str("/weather?id={}",request.lang);
+            // api key
+            url.push_str("/weather?id={}",request.api);
+
+    return url;
+    }
 
 // VVVVVVVVVVVVVVVVVVVVVVVVVVVVV delete after finished VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 //-------------------------------------------------------------------------------------

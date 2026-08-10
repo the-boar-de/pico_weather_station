@@ -1,10 +1,10 @@
 pub enum Enum_States {
     // Init State
-    init = 0,
+    Init = 0,
     //Idle State
-    idle = 10,
+    Idle = 10,
     //Update State
-    update = 20,
+    Update = 20,
     //Error State
-    error = 90,
+    Error = 90,
 }
