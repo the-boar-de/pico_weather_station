@@ -5,16 +5,12 @@ name = "pico_weather_station"
 version = "0.1.0"
 license = "MIT or Apache-2.0"
 
-[build-dependencies]
-regex = "1.11.0"
-
 [dependencies]
 cortex-m = "0.7"
 cortex-m-rt = "0.7"
 embedded-hal = "1.0.0"
 defmt = "1"
 defmt-rtt = "1"
-http = "1.5.0"
 
 [target.'cfg( target_arch = "arm" )'.dependencies]
 panic-probe = { version = "1", features = ["print-defmt"] }
@@ -31,3 +27,6 @@ rp235x-hal = { version = "0.3", features = ["rt", "critical-section-impl"] }
 
 [target."thumbv8m.main-none-eabihf".dependencies]
 rp235x-hal = { version = "0.3", features = ["rt", "critical-section-impl"] }
+
+[build-dependencies]
+regex = "1.13.1"

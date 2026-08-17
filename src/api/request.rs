@@ -11,34 +11,32 @@
 // use moduals
 extern crate serde_json;
 
-use http::StatusCode;
-use std::time::Duration;
+//use http::StatusCode;
 
-pub struct Request{
-    version: f64, 
-    unit: str, 
-    location: u64, 
-    lang: str, 
-    api: str
+pub struct Request {
+    version: f64,
+    unit: str,
+    location: u64,
+    lang: str,
+    api: str,
 }
 
-
-// Request data from the api 
-fn request_data( request: &Request) -> String {
+// Request data from the api
+fn request_data(request: &Request) -> String {
     let url = String::from("http://api.openweathermap.org/data/");
-            // Add Api Version 
-            url.push_str("{}",request.version.to_string() );
-            // Add location 
-            url.push_str("/weather?id={}",request.location.to_string());
-            // Add unit
-            url.push_str("&units={}",request.unit);
-            // Add lang
-            url.push_str("/weather?id={}",request.lang);
-            // api key
-            url.push_str("/weather?id={}",request.api);
+    // Add Api Version
+    url.push_str("{}", request.version.to_string());
+    // Add location
+    url.push_str("/weather?id={}", request.location.to_string());
+    // Add unit
+    url.push_str("&units={}", request.unit);
+    // Add lang
+    url.push_str("/weather?id={}", request.lang);
+    // api key
+    url.push_str("/weather?id={}", request.api);
 
     return url;
-    }
+}
 
 // VVVVVVVVVVVVVVVVVVVVVVVVVVVVV delete after finished VVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 //-------------------------------------------------------------------------------------
@@ -54,7 +52,7 @@ use futures::executor;
 use http::StatusCode;
 use regex::Regex;           // => not for embedded
 use std::sync::mpsc;        // => not for embedded
-use std::thread;          
+use std::thread;
   // => not for embedded
 use std::time::Duration;
 

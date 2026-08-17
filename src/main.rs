@@ -62,6 +62,9 @@ pub static IMAGE_DEF: hal::block::ImageDef = hal::block::ImageDef::secure_exe();
 const XTAL_FREQ_HZ: u32 = 12_000_000u32;
 //==============================================================================================
 //custom use
+mod enums;
+use enums::enums::EnumApiRequest::*;
+use enums::enums::EnumStates::*;
 
 //==============================================================================================
 
@@ -111,37 +114,36 @@ fn main() -> ! {
         sio.gpio_bank0,
         &mut pac.RESETS,
     );
-    let mut main_Sequence = Enum_States.Init;
+    let mut main_Sequence = State_Init;
 
     loop {
         match main_Sequence {
             // Init State
-            Enum_State::Init => {
+            State_Init => {
                 info!("Enter INIT state");
                 // Establish Wifi Connection
 
                 // Clean screen
 
                 // Write When Next Step
-                main_Sequence = Enum_State::Update;
+                main_Sequence = State_Update;
             }
 
             // Idle State
-            Enum_State::Idle => {
+            State_Idle => {
                 info!("Enter IDLE state");
             }
 
             //Update data and screen
-            Enum_State::Update => {
+            State_Update => {
                 info!("Enter UPDATE state");
 
-
                 // Write When Next Step
-                main_Sequence = Enum_State::Idle;
+                main_Sequence = State_Idle;
             }
 
             // Error State
-            Enum_State::Error => {
+            State_Error => {
                 info!("Enter ERROR state");
             }
         }
