@@ -1,164 +1,100 @@
-//! SPDX-License-Identifier: MIT OR Apache-2.0
-//!
-//! Copyright (c) 2021–2024 The rp-rs Developers
-//! Copyright (c) 2021 rp-rs organization
-//! Copyright (c) 2025 Raspberry Pi Ltd.
-//!
-//! # GPIO 'Blinky' Example
-//!
-//! This application demonstrates how to control a GPIO pin on the rp2040 and rp235x.
-//!
-//! It may need to be adapted to your particular board layout and/or pin assignment.
-
+//Outside scope Declaration
 #![no_std]
 #![no_main]
+use core::time::Duration;
 
+//Modules
+use cyw43::aligned_bytes;
+use cyw43_pio::{DEFAULT_CLOCK_DIVIDER, PioSpi};
 use defmt::*;
 use defmt_rtt as _;
-
-use embedded_hal::delay::DelayNs;
-use embedded_hal::digital::OutputPin;
-#[cfg(target_arch = "riscv32")]
-use panic_halt as _;
-#[cfg(target_arch = "arm")]
+use embassy_executor::Spawner;
+use embassy_rp::gpio::{Level, Output};
+use embassy_rp::peripherals::{DMA_CH0, DMA_CH1, PIO0};
+use embassy_rp::pio::{InterruptHandler, Pio};
+use embassy_rp::{bind_interrupts, dma};
+use embassy_time::{Duration, Timer};
 use panic_probe as _;
+use static_cell::StaticCell;
 
-// Alias for our HAL crate
-use hal::entry;
+use ed_utl::*;
 
-#[cfg(rp2350)]
-use rp235x_hal as hal;
-
-#[cfg(rp2040)]
-use rp2040_hal as hal;
-
-// use bsp::entry;
-// use bsp::hal;
-// use rp_pico as bsp;
-
-/// The linker will place this boot block at the start of our program image. We
-/// need this to help the ROM bootloader get our code up and running.
-/// Note: This boot block is not necessary when using a rp-hal based BSP
-/// as the BSPs already perform this step.
-/*#[unsafe(link_section = ".boot2")]
->>>>>>> 988929f (reorgenized folder)
-#[used]
-#[cfg(rp2040)]
-pub static BOOT2: [u8; 256] = rp2040_boot2::BOOT_LOADER_W25Q080;
-*/
-/// Tell the Boot ROM about our application
-#[unsafe(link_section = ".start_block")]
-#[used]
-#[cfg(rp2350)]
-pub static IMAGE_DEF: hal::block::ImageDef = hal::block::ImageDef::secure_exe();
-
-/// The linker will place this boot block at the start of our program image. We
-/// need this to help the ROM bootloader get our code up and running.
-/// Note: This boot block is not necessary when using a rp-hal based BSP
-/// as the BSPs already perform this step.
-
-/// External high-speed crystal on the Raspberry Pi Pico 2 board is 12 MHz.
-/// Adjust if your board has a different frequency
-const XTAL_FREQ_HZ: u32 = 12_000_000u32;
-//==============================================================================================
-//custom use
 mod enums;
-use enums::enums::EnumApiRequest::*;
-use enums::enums::EnumStates::*;
+use crate::enums::enums::EnumStates::*;
 
-//==============================================================================================
+//====================================
+// Async Tasks
+//====================================
 
-#[entry]
-fn main() -> ! {
-    // Config area
-    //--------------------
-    info!("Program start");
-    //Program start up run
-    // runs only once
+#[embassy_executor::task]
+async fn cyw43_task(
+    runner: cyw43::Runner<
+        'static,
+        cyw43::SpiBus<Output<'static>, PioSpi<'static, PIO0, 0>>,
+        cyw43::Cyw43439,
+    >,
+) -> ! {
+    runner.run().await
+}
 
-    // Setup
-    // Manual set up
-    // Wifi Setting needs to be adjusted
+// TO DO DISPLAY - TASK
+#[embassy_executor::task]
+async fn display() {}
 
-    // Grab our singleton objects
-    let mut pac = hal::pac::Peripherals::take().unwrap();
+// TO DO HEART BEAT - TASK
 
-    // Set up the watchdog driver - needed by the clock setup code
-    let mut watchdog = hal::Watchdog::new(pac.WATCHDOG);
+#[embassy_executor::task]
+async fn heart_beat() {
+    /*   let Pin_25_info = ed_utl::Information {
+        pinnumber: 25,
+        name: "Heartbeat Pin",
+    };
 
-    // Configure the clocks
-    let clocks = hal::clocks::init_clocks_and_plls(
-        XTAL_FREQ_HZ,
-        pac.XOSC,
-        pac.CLOCKS,
-        pac.PLL_SYS,
-        pac.PLL_USB,
-        &mut pac.RESETS,
-        &mut watchdog,
-    )
-    .unwrap();
+    let mut Pin25 = ed_utl::OutputValue {
+        value: 0.0,
+        outout_on: false,
+        outputname: "",
+        information: Pin_25_info,
+    };*/
 
-    #[cfg(rp2040)]
-    let mut timer = hal::Timer::new(pac.TIMER, &mut pac.RESETS, &clocks);
-
-    #[cfg(rp2350)]
-    let mut timer = hal::Timer::new_timer0(pac.TIMER0, &mut pac.RESETS, &clocks);
-
-    // The single-cycle I/O block controls our GPIO pins
-    let sio = hal::Sio::new(pac.SIO);
-
-    // Set the pins to their default state
-    let pins = hal::gpio::Pins::new(
-        pac.IO_BANK0,
-        pac.PADS_BANK0,
-        sio.gpio_bank0,
-        &mut pac.RESETS,
-    );
-    let mut main_Sequence = State_Init;
+    let sleep = Duration::from_secs(1);
 
     loop {
-        match main_Sequence {
-            // Init State
-            State_Init => {
-                info!("Enter INIT state");
-                // Establish Wifi Connection
+        info!("heart beat on");
 
-                // Clean screen
-
-                // Write When Next Step
-                main_Sequence = State_Update;
-            }
-
-            // Idle State
-            State_Idle => {
-                info!("Enter IDLE state");
-            }
-
-            //Update data and screen
-            State_Update => {
-                info!("Enter UPDATE state");
-
-                // Write When Next Step
-                main_Sequence = State_Idle;
-            }
-
-            // Error State
-            State_Error => {
-                info!("Enter ERROR state");
-            }
-        }
+        info!("heart beat off ");
     }
 }
 
-/// Program metadata for `picotool info`
-#[unsafe(link_section = ".bi_entries")]
-#[used]
-pub static PICOTOOL_ENTRIES: [hal::binary_info::EntryAddr; 5] = [
-    hal::binary_info::rp_cargo_bin_name!(),
-    hal::binary_info::rp_cargo_version!(),
-    hal::binary_info::rp_program_description!(c"Blinky Example"),
-    hal::binary_info::rp_cargo_homepage_url!(),
-    hal::binary_info::rp_program_build_attribute!(),
-];
+//====================================
+// Main
+//====================================
 
-// End of file
+// TO DO MAIN SEQUENCE - TASK
+#[embassy_executor::main(
+    executor = "embassy_rp::executor::Executor",
+    entry = "cortex_m_rt::entry"
+)]
+async fn main(spawner: Spawner) {
+    //Setup
+    let main_loop = State_Init;
+
+    //====================================
+    // Main loop
+    //====================================
+    loop {
+        match main_loop {
+            //When main start it goaes trough the init sequence
+            State_Init => {}
+
+            //Idle State, waiting for the next trigger request
+            State_Idle => {}
+
+            // starts the trigger request
+            State_Update => {}
+
+            // Error - preventing from program break
+            State_Error => {}
+        }
+    }
+}

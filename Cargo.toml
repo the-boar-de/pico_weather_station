@@ -11,6 +11,9 @@ cortex-m-rt = "0.7"
 embedded-hal = "1.0.0"
 defmt = "1"
 defmt-rtt = "1"
+cyw43 = "0.7.0"
+embassy-rp = "0.10.0"
+ed_utl = "0.0.1"
 
 [target.'cfg( target_arch = "arm" )'.dependencies]
 panic-probe = { version = "1", features = ["print-defmt"] }
