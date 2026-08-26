@@ -1,8 +1,8 @@
-   0.120353776s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint: stale: changed "/workspaces/pico_weather_station/.cargo/config.toml"
-   0.120382263s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint:           (vs) "/workspaces/pico_weather_station/target/debug/.fingerprint/pico_weather_station-af1ab867c50727ee/dep-build-script-build-script-build"
-   0.120387680s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 1787254114, nanos: 382192823 } < FileTime { seconds: 1787254114, nanos: 684192813 }
-   0.121290706s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint: fingerprint error for pico_weather_station v0.1.0 (/workspaces/pico_weather_station)/Check { test: false }/TargetInner { name: "pico_weather_station", doc: true, ..: with_path("/workspaces/pico_weather_station/src/main.rs", Edition2024) }
-   0.121314716s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint:     err: failed to read `/workspaces/pico_weather_station/target/thumbv8m.main-none-eabihf/debug/.fingerprint/pico_weather_station-d9e1fe778a484da2/bin-pico_weather_station`
+   0.120901217s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint: stale: changed "/home/chris/Files/Projekte/own/pico_weather_station/.cargo/config.toml"
+   0.120910367s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint:           (vs) "/home/chris/Files/Projekte/own/pico_weather_station/target/debug/.fingerprint/pico_weather_station-5fe8acfac6ef3faa/dep-build-script-build-script-build"
+   0.120913307s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 1787769469, nanos: 71044787 } < FileTime { seconds: 1787769469, nanos: 209120449 }
+   0.121301143s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint: fingerprint error for pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station)/Check { test: false }/TargetInner { name: "pico_weather_station", doc: true, ..: with_path("/home/chris/Files/Projekte/own/pico_weather_station/src/main.rs", Edition2024) }
+   0.121309533s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="pico_weather_station"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/chris/Files/Projekte/own/pico_weather_station/target/thumbv8m.main-none-eabihf/debug/.fingerprint/pico_weather_station-6e1c35458031f893/bin-pico_weather_station`
 
 Caused by:
     No such file or directory (os error 2)
@@ -22,128 +22,31 @@ Stack backtrace:
   11: cargo::main
   12: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
   13: std::rt::lang_start::<()>::{closure#0}
-  14: <&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync as core::ops::function::FnOnce<()>>::call_once
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/core/src/ops/function.rs:287:21
-  15: std::panicking::catch_unwind::do_call::<&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync, i32>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:581:40
-  16: std::panicking::catch_unwind::<i32, &dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:544:19
-  17: std::panic::catch_unwind::<&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync, i32>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panic.rs:359:14
+  14: <&dyn core::ops::function::Fn<(), Output = i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe as core::ops::function::FnOnce<()>>::call_once
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/core/src/ops/function.rs:287:21
+  15: std::panicking::catch_unwind::do_call::<&dyn core::ops::function::Fn<(), Output = i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe, i32>
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/std/src/panicking.rs:581:40
+  16: std::panicking::catch_unwind::<i32, &dyn core::ops::function::Fn<(), Output = i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe>
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/std/src/panicking.rs:544:19
+  17: std::panic::catch_unwind::<&dyn core::ops::function::Fn<(), Output = i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe, i32>
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/std/src/panic.rs:359:14
   18: std::rt::lang_start_internal::{closure#0}
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/rt.rs:175:24
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/std/src/rt.rs:175:24
   19: std::panicking::catch_unwind::do_call::<std::rt::lang_start_internal::{closure#0}, isize>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:581:40
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/std/src/panicking.rs:581:40
   20: std::panicking::catch_unwind::<isize, std::rt::lang_start_internal::{closure#0}>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:544:19
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/std/src/panicking.rs:544:19
   21: std::panic::catch_unwind::<std::rt::lang_start_internal::{closure#0}, isize>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panic.rs:359:14
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/std/src/panic.rs:359:14
   22: std::rt::lang_start_internal
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/rt.rs:171:5
+             at /rustc/ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96/library/std/src/rt.rs:171:5
   23: main
   24: __libc_start_call_main
-             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-  25: __libc_start_main_impl
-             at ./csu/../csu/libc-start.c:360:3
+  25: __libc_start_main@@GLIBC_2.34
   26: <unknown>
-   0.197086120s  INFO prepare_target{force=false package_id=embassy-rp v0.10.0 target="embassy_rp"}: cargo::core::compiler::fingerprint: fingerprint error for embassy-rp v0.10.0/Check { test: false }/TargetInner { ..: lib_target("embassy_rp", ["lib"], "/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/embassy-rp-0.10.0/src/lib.rs", Edition2024) }
-   0.197106975s  INFO prepare_target{force=false package_id=embassy-rp v0.10.0 target="embassy_rp"}: cargo::core::compiler::fingerprint:     err: failed to read `/workspaces/pico_weather_station/target/thumbv8m.main-none-eabihf/debug/.fingerprint/embassy-rp-45a92ea7ae738356/lib-embassy_rp`
-
-Caused by:
-    No such file or directory (os error 2)
-
-Stack backtrace:
-   0: cargo_util::paths::read_bytes
-   1: cargo_util::paths::read
-   2: cargo::core::compiler::fingerprint::_compare_old_fingerprint
-   3: cargo::core::compiler::fingerprint::prepare_target
-   4: cargo::core::compiler::compile
-   5: cargo::core::compiler::compile
-   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
-   7: cargo::ops::cargo_compile::compile_ws
-   8: cargo::ops::cargo_compile::compile_with_exec
-   9: cargo::ops::cargo_compile::compile
-  10: cargo::commands::check::exec
-  11: <cargo::cli::Exec>::exec
-  12: cargo::main
-  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
-  14: std::rt::lang_start::<()>::{closure#0}
-  15: <&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync as core::ops::function::FnOnce<()>>::call_once
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/core/src/ops/function.rs:287:21
-  16: std::panicking::catch_unwind::do_call::<&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync, i32>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:581:40
-  17: std::panicking::catch_unwind::<i32, &dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:544:19
-  18: std::panic::catch_unwind::<&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync, i32>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panic.rs:359:14
-  19: std::rt::lang_start_internal::{closure#0}
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/rt.rs:175:24
-  20: std::panicking::catch_unwind::do_call::<std::rt::lang_start_internal::{closure#0}, isize>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:581:40
-  21: std::panicking::catch_unwind::<isize, std::rt::lang_start_internal::{closure#0}>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:544:19
-  22: std::panic::catch_unwind::<std::rt::lang_start_internal::{closure#0}, isize>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panic.rs:359:14
-  23: std::rt::lang_start_internal
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/rt.rs:171:5
-  24: main
-  25: __libc_start_call_main
-             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-  26: __libc_start_main_impl
-             at ./csu/../csu/libc-start.c:360:3
-  27: <unknown>
-   0.201816686s  INFO prepare_target{force=false package_id=rp-pac v7.0.0 target="rp_pac"}: cargo::core::compiler::fingerprint: fingerprint error for rp-pac v7.0.0/Check { test: false }/TargetInner { ..: lib_target("rp_pac", ["lib"], "/home/codespace/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/rp-pac-7.0.0/src/lib.rs", Edition2021) }
-   0.201839230s  INFO prepare_target{force=false package_id=rp-pac v7.0.0 target="rp_pac"}: cargo::core::compiler::fingerprint:     err: failed to read `/workspaces/pico_weather_station/target/thumbv8m.main-none-eabihf/debug/.fingerprint/rp-pac-a07eafdd66ce5c6f/lib-rp_pac`
-
-Caused by:
-    No such file or directory (os error 2)
-
-Stack backtrace:
-   0: cargo_util::paths::read_bytes
-   1: cargo_util::paths::read
-   2: cargo::core::compiler::fingerprint::_compare_old_fingerprint
-   3: cargo::core::compiler::fingerprint::prepare_target
-   4: cargo::core::compiler::compile
-   5: cargo::core::compiler::compile
-   6: cargo::core::compiler::compile
-   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
-   8: cargo::ops::cargo_compile::compile_ws
-   9: cargo::ops::cargo_compile::compile_with_exec
-  10: cargo::ops::cargo_compile::compile
-  11: cargo::commands::check::exec
-  12: <cargo::cli::Exec>::exec
-  13: cargo::main
-  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
-  15: std::rt::lang_start::<()>::{closure#0}
-  16: <&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync as core::ops::function::FnOnce<()>>::call_once
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/core/src/ops/function.rs:287:21
-  17: std::panicking::catch_unwind::do_call::<&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync, i32>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:581:40
-  18: std::panicking::catch_unwind::<i32, &dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:544:19
-  19: std::panic::catch_unwind::<&dyn core::ops::function::Fn<(), Output = i32> + core::panic::unwind_safe::RefUnwindSafe + core::marker::Sync, i32>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panic.rs:359:14
-  20: std::rt::lang_start_internal::{closure#0}
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/rt.rs:175:24
-  21: std::panicking::catch_unwind::do_call::<std::rt::lang_start_internal::{closure#0}, isize>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:581:40
-  22: std::panicking::catch_unwind::<isize, std::rt::lang_start_internal::{closure#0}>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panicking.rs:544:19
-  23: std::panic::catch_unwind::<std::rt::lang_start_internal::{closure#0}, isize>
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/panic.rs:359:14
-  24: std::rt::lang_start_internal
-             at /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library/std/src/rt.rs:171:5
-  25: main
-  26: __libc_start_call_main
-             at ./csu/../sysdeps/nptl/libc_start_call_main.h:58:16
-  27: __libc_start_main_impl
-             at ./csu/../csu/libc-start.c:360:3
-  28: <unknown>
-   0.203090716s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint dirty for pico_weather_station v0.1.0 (/workspaces/pico_weather_station)/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/workspaces/pico_weather_station/build.rs", Edition2024) }
-   0.203104359s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="build-script-build"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleDepFingerprint { unit: UnitIndex(157) })
-   0.203233593s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint dirty for pico_weather_station v0.1.0 (/workspaces/pico_weather_station)/Build/TargetInner { ..: custom_build_target("build-script-build", "/workspaces/pico_weather_station/build.rs", Edition2024) }
-   0.203241660s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/workspaces/pico_weather_station) target="build-script-build"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/workspaces/pico_weather_station/target/debug/.fingerprint/pico_weather_station-af1ab867c50727ee/dep-build-script-build-script-build", reference_mtime: FileTime { seconds: 1787254114, nanos: 382192823 }, stale: "/workspaces/pico_weather_station/.cargo/config.toml", stale_mtime: FileTime { seconds: 1787254114, nanos: 684192813 } }))
-    Checking rp-pac v7.0.0
-   Compiling pico_weather_station v0.1.0 (/workspaces/pico_weather_station)
-error: could not compile `rp-pac` (lib) due to 2 previous errors
-warning: build failed, waiting for other jobs to finish...
+   0.135731819s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint dirty for pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station)/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/chris/Files/Projekte/own/pico_weather_station/build.rs", Edition2024) }
+   0.135743319s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="build-script-build"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleDepFingerprint { unit: UnitIndex(191) })
+   0.135812910s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="build-script-build"}: cargo::core::compiler::fingerprint: fingerprint dirty for pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station)/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/chris/Files/Projekte/own/pico_weather_station/build.rs", Edition2024) }
+   0.135817900s  INFO prepare_target{force=false package_id=pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station) target="build-script-build"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/home/chris/Files/Projekte/own/pico_weather_station/target/debug/.fingerprint/pico_weather_station-5fe8acfac6ef3faa/dep-build-script-build-script-build", reference_mtime: FileTime { seconds: 1787769469, nanos: 71044787 }, stale: "/home/chris/Files/Projekte/own/pico_weather_station/.cargo/config.toml", stale_mtime: FileTime { seconds: 1787769469, nanos: 209120449 } }))
+   Compiling pico_weather_station v0.1.0 (/home/chris/Files/Projekte/own/pico_weather_station)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.32s

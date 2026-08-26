@@ -13,9 +13,9 @@ use embassy_rp::gpio::{Level, Output};
 use embassy_rp::peripherals::{DMA_CH0, DMA_CH1, PIO0};
 use embassy_rp::pio::{InterruptHandler, Pio};
 use embassy_rp::{bind_interrupts, dma};
-use embassy_time::{Duration, Timer};
+//use embassy_time::{Duration, Timer};
 use panic_probe as _;
-use static_cell::StaticCell;
+//use static_cell::StaticCell;
 
 use ed_utl::*;
 
@@ -26,7 +26,7 @@ use crate::enums::enums::EnumStates::*;
 // Async Tasks
 //====================================
 
-#[embassy_executor::task]
+/*#[embassy_executor::task]
 async fn cyw43_task(
     runner: cyw43::Runner<
         'static,
@@ -35,7 +35,7 @@ async fn cyw43_task(
     >,
 ) -> ! {
     runner.run().await
-}
+}*/
 
 // TO DO DISPLAY - TASK
 #[embassy_executor::task]
